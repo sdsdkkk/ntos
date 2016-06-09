@@ -37,5 +37,45 @@ class Fixnum
 
   def to_text
     return 'zero' if self == 0
+    text(self)
+  end
+
+  private
+
+  def text(num)
+    if num > 99
+      joiner, divider = properties(num)
+      str = "#{text(num/divider)} #{joiner}"
+      str += " #{text(num%divider)}" if num % divider > 0
+      str
+    else
+      digits_to_text(num)
+    end
+  end
+
+  def digits_to_text(num)
+    if num < 20 && num > 10
+      TEENS[num]
+    elsif num < 10
+      ONES[num]
+    else
+      ones = num % 10
+      str = TENTHS[num - ones]
+      str += " #{ONES[ones]}" if ones > 0
+      str
+    end
+  end
+
+  def properties(num)
+    case
+    when num > 999_999_999
+      ["billion", 1_000_000_000]
+    when num > 999_999
+      ["million", 1_000_000]
+    when num > 999
+      ["thousand", 1_000]
+    when num > 99
+      ["hundred", 100]
+    end
   end
 end
