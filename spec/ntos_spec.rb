@@ -34,7 +34,11 @@ describe Fixnum do
     10_000_000 => 'ten million',
     11_000_000 => 'eleven million',
     100_000_000 => 'one hundred million',
-    1_000_000_000 => 'one billion'
+    1_000_000_000 => 'one billion',
+    1_000_000_000_000 => 'one trillion',
+    -1_000_000_000_000 => 'minus one trillion',
+    -21 => 'minus twenty one',
+    -11_000_000 => 'minus eleven million'
   }
 
   mapping.each do |k, v|

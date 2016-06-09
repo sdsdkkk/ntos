@@ -37,7 +37,9 @@ class Fixnum
 
   def to_text
     return 'zero' if self == 0
-    text(self)
+    str = text(self.abs)
+    str = "minus #{str}" if self < 0
+    str
   end
 
   private
@@ -68,6 +70,8 @@ class Fixnum
 
   def properties(num)
     case
+    when num > 999_999_999_999
+      ["trillion", 1_000_000_000_000]
     when num > 999_999_999
       ["billion", 1_000_000_000]
     when num > 999_999
